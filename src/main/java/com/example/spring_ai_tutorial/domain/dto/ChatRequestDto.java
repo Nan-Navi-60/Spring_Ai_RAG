@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "채팅 요청 데이터 모델")
 public class ChatRequestDto {
 
-    @Schema(description = "사용자 질문", example = "안녕하세요")
+    @Schema(description = "사용자 질문", example = "저에 대해서 물어보세요!")
     private String query;
 
     @Schema(description = "사용할 LLM 모델", example = "gemini-2.5-flash-lite", defaultValue = "gemini-2.5-flash-lite")

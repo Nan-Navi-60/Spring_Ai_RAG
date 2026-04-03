@@ -37,8 +37,8 @@ public class RagController {
         this.ragService = ragService;
     }
 
-    @Operation(summary = "PDF 문서 업로드",
-            description = "PDF 파일을 업로드하여 벡터 스토어에 저장합니다.")
+    @Operation(summary = "모든 파일 업로드",
+            description = "파일을 업로드하여 벡터 스토어에 저장합니다.")
     @ApiResponse(responseCode = "200", description = "문서 업로드 성공",
             content = @Content(schema = @Schema(implementation = ApiResponseDto.class)))
     @ApiResponse(responseCode = "400", description = "잘못된 요청")
@@ -47,7 +47,7 @@ public class RagController {
     // MultipartFile은 요청 스트림에 묶여 있어 요청 종료 시 사라지므로, 이후 처리에서 안정적으로 읽으려면 실제 파일로 먼저 저장해야 함
     @PostMapping(value = "/documents", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ApiResponseDto<DocumentUploadResultDto>> uploadDocument(
-            @Parameter(description = "업로드할 PDF 파일", required = true)
+            @Parameter(description = "업로드할 파일", required = true)
             @RequestParam("file") MultipartFile file) {
 
         log.info("문서 업로드 요청 받음: {}", file.getOriginalFilename());
@@ -58,9 +58,9 @@ public class RagController {
         }
 
         String filename = file.getOriginalFilename();
-        if (filename == null || !filename.toLowerCase().endsWith(".pdf")) {
+        if (filename == null || !filename.toLowerCase().endsWith(".*")) {
             log.warn("지원하지 않는 파일 형식: {}", filename);
-            return ResponseEntity.badRequest().body(ApiResponseDto.failure("PDF 파일만 업로드 가능합니다."));
+            return ResponseEntity.badRequest().body(ApiResponseDto.failure("지원하지 않는 파일입니다."));
         }
 
         File tempFile;

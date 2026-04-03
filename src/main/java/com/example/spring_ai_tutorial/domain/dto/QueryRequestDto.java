@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "질의 요청 데이터 모델")
 public class QueryRequestDto {
 
-    @Schema(description = "사용자 질문", example = "인공지능이란 무엇인가요?")
+    @Schema(description = "사용자 질문", example = "어떤 프로젝트들을 진행했나요?")
     private String query;
 
     @Schema(description = "최대 검색 결과 수", example = "3", defaultValue = "3")

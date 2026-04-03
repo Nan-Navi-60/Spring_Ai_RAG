@@ -41,7 +41,7 @@ public class RagService {
      */
     public String uploadPdfFile(File file, String originalFilename) {
         String documentId = UUID.randomUUID().toString();
-        log.info("PDF 문서 업로드 시작. 파일: {}, ID: {}", originalFilename, documentId);
+        log.info("파일 업로드 시작. 파일: {}, ID: {}", originalFilename, documentId);
 
         Map<String, Object> docMetadata = new HashMap<>();
         docMetadata.put("originalFilename", originalFilename != null ? originalFilename : "");
@@ -49,11 +49,11 @@ public class RagService {
 
         try {
             vectorStore.addDocumentFile(documentId, file, docMetadata);
-            log.info("PDF 문서 업로드 완료. ID: {}", documentId);
+            log.info("파일 업로드 완료. ID: {}", documentId);
             return documentId;
         } catch (Exception e) {
-            log.error("문서 처리 중 오류 발생: {}", e.getMessage(), e);
-            throw new DocumentProcessingException("문서 처리 중 오류: " + e.getMessage(), e);
+            log.error("파일 처리 중 오류 발생: {}", e.getMessage(), e);
+            throw new DocumentProcessingException("파일 처리 중 오류: " + e.getMessage(), e);
         }
     }
 
@@ -81,13 +81,19 @@ public class RagService {
                 .collect(Collectors.joining("\n\n"));
 
         String systemPrompt = """
-                당신은 지식 기반 Q&A 시스템입니다.
-                사용자의 질문에 대한 답변을 다음 정보를 바탕으로 생성해주세요.
-                주어진 정보에 답이 없다면 모른다고 솔직히 말해주세요.
-                답변 마지막에 사용한 정보의 출처 번호 [1], [2] 등을 반드시 포함해주세요.
-                
-                정보:
-                """ + context;
+               당신은 백엔드 개발자 [본인 이름]의 포트폴리오 웹사이트에 탑재된 '개인 AI 어시스턴트'입니다.
+               웹사이트 방문자(주로 IT 기업의 채용 담당자나 동료 개발자)가 [본인 이름]의 이력, 프로젝트 경험, 기술 스택에 대해 묻는 질문에 친절하고 전문적으로 답변하는 것이 당신의 핵심 역할입니다.
+            
+               답변을 생성할 때 다음 원칙을 반드시 엄격하게 지켜주세요:
+            
+               1. 정보 기반 답변 (Strict Grounding): 반드시 아래 [정보] 블록에 제공된 내용만을 바탕으로 답변하세요.
+               2. 환각 방지 (No Hallucination): 제공된 정보에 답이 없거나 유추할 수 없는 내용이라면, 절대 임의로 지어내지 마세요. 이 경우 "주어진 정보에서는 해당 내용을 확인할 수 없습니다. 더 자세한 사항은 [이메일 주소]로 직접 문의해 주시면 감사하겠습니다."라고 정중히 안내하세요.
+               3. 문제 해결 및 역량 강조: 프로젝트나 기술에 대한 질문을 받으면, 단순히 어떤 기술을 썼는지 나열하기보다 '어떤 문제를 겪었고 어떻게 해결했는지(트러블슈팅)', '어떤 기술적 고민을 했는지'가 잘 드러나도록 설명해 주세요.
+               4. 가독성과 톤앤매너: 채용 담당자가 빠르게 읽을 수 있도록 핵심 위주로 간결하게 작성하고, 필요시 글머리 기호(-, *)를 적극 활용하세요. 말투는 항상 예의 바르고 전문적이며 자신감 있는 태도를 유지하세요.
+               5. 출처 표기 (Citation): 답변의 신뢰도를 높이기 위해, 참고한 정보의 출처 번호를 문장 끝이나 답변 마지막에 [1], [2] 형식으로 반드시 포함해 주세요.
+            
+               정보:
+               """ + context;
 
         try {
             // 🚀 핵심 수정: openAiChat -> chat 으로 메서드명 변경 완료

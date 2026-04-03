@@ -23,15 +23,15 @@ public class DocumentProcessingService {
      * PDF 파일로부터 텍스트를 추출
      */
     public String extractTextFromPdf(File pdfFile) {
-        log.debug("PDF 텍스트 추출 시작: {}", pdfFile.getName());
+        log.debug("텍스트 추출 시작: {}", pdfFile.getName());
         try (PDDocument document = PDDocument.load(pdfFile)) {
-            log.debug("PDF 문서 로드 성공: {}페이지", document.getNumberOfPages());
+            log.debug("문서 로드 성공: {}페이지", document.getNumberOfPages());
             String text = new PDFTextStripper().getText(document);
-            log.debug("PDF 텍스트 추출 완료: {} 문자", text.length());
+            log.debug("텍스트 추출 완료: {} 문자", text.length());
             return text;
         } catch (IOException e) {
-            log.error("PDF 텍스트 추출 실패", e);
-            throw new DocumentProcessingException("PDF에서 텍스트 추출 실패: " + e.getMessage(), e);
+            log.error("텍스트 추출 실패", e);
+            throw new DocumentProcessingException("텍스트 추출 실패: " + e.getMessage(), e);
         }
     }
 }
