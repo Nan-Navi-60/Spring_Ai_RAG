@@ -1,6 +1,6 @@
-package com.example.spring_ai_tutorial.service;
+package com.spring_ai_rag.service;
 
-import com.example.spring_ai_tutorial.exception.DocumentProcessingException;
+import com.spring_ai_rag.exception.DocumentProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;

@@ -1,8 +1,8 @@
-package com.example.spring_ai_tutorial.repository;
+package com.spring_ai_rag.repository;
 
-import com.example.spring_ai_tutorial.domain.dto.DocumentSearchResultDto;
-import com.example.spring_ai_tutorial.exception.DocumentProcessingException;
-import com.example.spring_ai_tutorial.service.DocumentProcessingService;
+import com.spring_ai_rag.domain.dto.DocumentSearchResultDto;
+import com.spring_ai_rag.exception.DocumentProcessingException;
+import com.spring_ai_rag.service.DocumentProcessingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;

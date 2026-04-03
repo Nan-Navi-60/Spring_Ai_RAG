@@ -1,4 +1,4 @@
-package com.example.spring_ai_tutorial.service;
+package com.spring_ai_rag.service;
 
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.stereotype.Service;

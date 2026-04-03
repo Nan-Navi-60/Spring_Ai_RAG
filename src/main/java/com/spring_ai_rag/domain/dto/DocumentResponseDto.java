@@ -1,4 +1,4 @@
-package com.example.spring_ai_tutorial.domain.dto;
+package com.spring_ai_rag.domain.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Map;

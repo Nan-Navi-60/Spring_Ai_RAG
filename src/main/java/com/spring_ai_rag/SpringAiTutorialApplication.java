@@ -1,4 +1,4 @@
-package com.example.spring_ai_tutorial;
+package com.spring_ai_rag;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

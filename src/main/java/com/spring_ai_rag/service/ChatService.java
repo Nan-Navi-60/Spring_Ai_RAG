@@ -1,4 +1,4 @@
-package com.example.spring_ai_tutorial.service;
+package com.spring_ai_rag.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.messages.SystemMessage;

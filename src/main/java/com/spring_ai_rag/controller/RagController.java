@@ -1,7 +1,8 @@
-package com.example.spring_ai_tutorial.controller;
+package com.spring_ai_rag.controller;
 
-import com.example.spring_ai_tutorial.domain.dto.*;
-import com.example.spring_ai_tutorial.service.RagService;
+import com.spring_ai_rag.domain.dto.*;
+import com.spring_ai_rag.domain.dto.*;
+import com.spring_ai_rag.service.RagService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -9,8 +10,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -58,7 +57,7 @@ public class RagController {
         }
 
         String filename = file.getOriginalFilename();
-        if (filename == null || !filename.toLowerCase().endsWith(".*")) {
+        if (filename == null) {
             log.warn("지원하지 않는 파일 형식: {}", filename);
             return ResponseEntity.badRequest().body(ApiResponseDto.failure("지원하지 않는 파일입니다."));
         }

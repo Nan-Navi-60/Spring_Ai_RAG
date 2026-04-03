@@ -1,8 +1,8 @@
-package com.example.spring_ai_tutorial.service;
+package com.spring_ai_rag.service;
 
-import com.example.spring_ai_tutorial.domain.dto.DocumentSearchResultDto;
-import com.example.spring_ai_tutorial.exception.DocumentProcessingException;
-import com.example.spring_ai_tutorial.repository.QdrantDocumentVectorStore;
+import com.spring_ai_rag.domain.dto.DocumentSearchResultDto;
+import com.spring_ai_rag.exception.DocumentProcessingException;
+import com.spring_ai_rag.repository.QdrantDocumentVectorStore;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Service;

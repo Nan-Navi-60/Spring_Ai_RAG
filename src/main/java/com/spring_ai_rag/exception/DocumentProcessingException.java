@@ -1,4 +1,4 @@
-package com.example.spring_ai_tutorial.exception;
+package com.spring_ai_rag.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

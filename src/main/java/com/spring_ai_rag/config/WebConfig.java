@@ -1,4 +1,4 @@
-package com.example.spring_ai_tutorial.config;
+package com.spring_ai_rag.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

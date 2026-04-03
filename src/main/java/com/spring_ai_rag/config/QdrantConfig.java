@@ -1,4 +1,4 @@
-package com.example.spring_ai_tutorial.config;
+package com.spring_ai_rag.config;
 
 import io.qdrant.client.QdrantClient;
 import io.qdrant.client.QdrantGrpcClient;

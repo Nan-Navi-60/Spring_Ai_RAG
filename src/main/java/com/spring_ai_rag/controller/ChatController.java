@@ -1,8 +1,8 @@
-package com.example.spring_ai_tutorial.controller;
+package com.spring_ai_rag.controller;
 
-import com.example.spring_ai_tutorial.domain.dto.ApiResponseDto;
-import com.example.spring_ai_tutorial.domain.dto.ChatRequestDto;
-import com.example.spring_ai_tutorial.service.ChatService;
+import com.spring_ai_rag.domain.dto.ApiResponseDto;
+import com.spring_ai_rag.domain.dto.ChatRequestDto;
+import com.spring_ai_rag.service.ChatService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
