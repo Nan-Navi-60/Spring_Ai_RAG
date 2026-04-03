@@ -1,0 +1,50 @@
+spring:
+  profiles:
+    include: secret
+
+  application:
+    name: spring-ai-tutorial
+
+  config:
+    import: optional:file:.env[.properties]
+
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+  ai:
+    google:
+      genai:
+        # Chat 용 API 키
+        api-key: ${GEMINI_API_SECRET_KEY}
+        chat:
+          options:
+            model: "gemini-2.5-flash-lite"
+            temperature: 0.0
+
+        embedding:
+          api-key: ${GEMINI_API_SECRET_KEY}
+          options:
+            model: "gemini-embedding-001"
+
+    vectorstore:
+      qdrant:
+        host: ${QDRANT_HOST_URL}
+        port: ${QDRANT_HOST_PORT}    # gRPC 포트 (REST는 6333)
+        collection-name: ${QDRANT_COLLECTION_NAME}
+        use-tls: true
+        api-key: ${QDRANT_API_SECRET_KEY}
+        initialize-schema: true   # 컬렉션이 없으면 자동 생성
+        dimensions: 768
+
+server:
+  port: 8080
+
+springdoc:
+  api-docs:
+    path: /api-docs
+
+logging:
+  level:
+    com.example.spring_ai_tutorial: DEBUG
