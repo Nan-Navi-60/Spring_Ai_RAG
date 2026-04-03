@@ -62,10 +62,15 @@ public class RagController {
             return ResponseEntity.badRequest().body(ApiResponseDto.failure("지원하지 않는 파일입니다."));
         }
 
+        String extension = ".tmp";
+        int dotIndex = filename.lastIndexOf(".");
+        if (dotIndex > 0) {
+            extension = filename.substring(dotIndex).toLowerCase();
+        }
+
         File tempFile;
         try {
-            // MultipartFile을 디스크의 임시 파일로 복사 — 이후 단계에서 파일을 반복해서 읽을 수 있도록 함
-            tempFile = File.createTempFile("upload_", ".pdf");
+            tempFile = File.createTempFile("upload_", extension);
             file.transferTo(tempFile);
             log.debug("임시 파일 생성됨: {}", tempFile.getAbsolutePath());
         } catch (IOException e) {

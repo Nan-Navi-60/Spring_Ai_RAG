@@ -74,10 +74,15 @@ public class QdrantDocumentVectorStore {
         log.debug("파일 문서 추가 시작 - ID: {}, 파일: {}", id, file.getName());
         try {
             String fileText;
-            if (file.getName().toLowerCase().endsWith(".pdf")) {
+            String fileName = file.getName().toLowerCase();
+
+            // 🚀 수정: 확장자에 따라 안전하게 분기 처리
+            if (fileName.endsWith(".pdf")) {
                 fileText = documentProcessingService.extractTextFromPdf(file);
+            } else if (fileName.endsWith(".md") || fileName.endsWith(".txt")) {
+                fileText = documentProcessingService.extractTextFromMarkdown(file);
             } else {
-                fileText = java.nio.file.Files.readString(file.toPath());
+                throw new IllegalArgumentException("지원하지 않는 파일 형식입니다. (PDF, MD, TXT만 지원)");
             }
             log.debug("파일 텍스트 추출 완료 - 길이: {}", fileText.length());
             addDocument(id, fileText, metadata);

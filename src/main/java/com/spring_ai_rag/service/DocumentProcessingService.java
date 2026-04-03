@@ -34,4 +34,17 @@ public class DocumentProcessingService {
             throw new DocumentProcessingException("텍스트 추출 실패: " + e.getMessage(), e);
         }
     }
+
+    public String extractTextFromMarkdown(File file) {
+        log.debug("일반 텍스트(MD/TXT) 추출 시작: {}", file.getName());
+        try {
+            // 파일을 단순 문자열로 전체 읽기
+            String text = java.nio.file.Files.readString(file.toPath());
+            log.debug("일반 텍스트 추출 완료: {} 문자", text.length());
+            return text;
+        } catch (IOException e) {
+            log.error("텍스트 파일 읽기 실패", e);
+            throw new DocumentProcessingException("텍스트 파일 읽기 실패: " + e.getMessage(), e);
+        }
+    }
 }
