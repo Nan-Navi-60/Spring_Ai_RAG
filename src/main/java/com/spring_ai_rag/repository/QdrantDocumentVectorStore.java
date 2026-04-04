@@ -48,8 +48,8 @@ public class QdrantDocumentVectorStore {
 
             // [Step 4] 청킹: 임베딩 모델의 토큰 한도를 넘지 않도록 분할
             TokenTextSplitter splitter = TokenTextSplitter.builder()
-                    .withChunkSize(512)
-                    .withMinChunkSizeChars(350)
+                    .withChunkSize(800)
+                    .withMinChunkSizeChars(100)
                     .withMinChunkLengthToEmbed(5)
                     .withMaxNumChunks(10000)
                     .withKeepSeparator(true)
@@ -101,6 +101,7 @@ public class QdrantDocumentVectorStore {
             SearchRequest request = SearchRequest.builder()
                     .query(query)
                     .topK(maxResults)
+                    .similarityThreshold(0.6)
                     .build();
 
             // Qdrant DB를 조회하여 유사한 문서를 가져옵니다.
